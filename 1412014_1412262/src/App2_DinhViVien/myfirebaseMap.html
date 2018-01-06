@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geocoding service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 70%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    
+    </style>
+  </head>
+  <body>
+
+   
+    <div id="map"></div>
+    <div id="app">
+      <button @click="find(0.3)" id="r300">Tim trong 300 m (mặc định)</button>
+      <button @click="find(0.6)" id= "r600">Tim trong 600 m</button>
+      <button @click="find(1.0)" id= "r1000">Tim trong 1000 m</button>
+      <button @click="findOrigin" id= "originalPoint">Địa điểm gốc</button>
+      <button @click="findPath" >Tìm đường đi ngắn nhất</button>
+      <button @click="complete" >Gửi điểm cho app 3</button>
+      <h1>Phien định vị được kết thúc bằng nút Gủi đến App3.</h1>
+      <h2>Để có thể nhận các điểm khác từ app 1 nếu muôn thì hãy nhân "Gửi đến App 3"</h2>
+    </div>
+    <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-database.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script>
+
+      //ben config database test
+      var config = {
+         apiKey: "AIzaSyAdR0NDAuimzmQW92KUiT8mlbopIEj1kI4",
+         authDomain: "trafficbookapp.firebaseapp.com",
+         databaseURL: "https://trafficbookapp.firebaseio.com",
+         projectId: "trafficbookapp",
+         storageBucket: "trafficbookapp.appspot.com",
+         messagingSenderId: "405645033763"
+       };
+
+      firebase.initializeApp(config);
+
+      var database = firebase.database();
+
+      //geometric map
+      //icon
+       var icon = {
+             path: "M -53.582954,-415.35856 C -67.309015,-415.84417 -79.137232,-411.40275 -86.431515,-395.45159 L -112.76807,-329.50717 C -131.95714,-324.21675 -140.31066,-310.27864 -140.75323,-298.84302 L -140.75323,-212.49705 L -115.44706,-212.49705 L -115.44706,-183.44029 C -116.67339,-155.74786 -71.290042,-154.67757 -70.275134,-183.7288 L -69.739335,-212.24976 L 94.421043,-212.24976 L 94.956841,-183.7288 C 95.971739,-154.67759 141.39631,-155.74786 140.16998,-183.44029 L 140.16998,-212.49705 L 165.43493,-212.49705 L 165.43493,-298.84302 C 164.99236,-310.27864 156.63886,-324.21677 137.44977,-329.50717 L 111.11322,-395.45159 C 103.81894,-411.40272 91.990714,-415.84414 78.264661,-415.35856 L -53.582954,-415.35856 z M -50.57424,-392.48409 C -49.426163,-392.49037 -48.215854,-392.45144 -46.988512,-392.40166 L 72.082372,-392.03072 C 82.980293,-392.28497 87.602258,-392.03039 92.236634,-381.7269 L 111.19565,-330.61998 L -86.30787,-330.86727 L -67.554927,-380.61409 C -64.630656,-390.57231 -58.610776,-392.44013 -50.57424,-392.48409 z M -92.036791,-305.02531 C -80.233147,-305.02529 -70.646071,-295.47944 -70.646071,-283.6758 C -70.646071,-271.87217 -80.233147,-262.28508 -92.036791,-262.28508 C -103.84043,-262.28508 -113.42751,-271.87216 -113.42751,-283.6758 C -113.42751,-295.47946 -103.84043,-305.02531 -92.036791,-305.02531 z M 117.91374,-305.02531 C 129.71738,-305.02533 139.26324,-295.47944 139.26324,-283.6758 C 139.26324,-271.87216 129.71738,-262.28508 117.91374,-262.28508 C 106.1101,-262.28507 96.523021,-271.87216 96.523021,-283.6758 C 96.523021,-295.47944 106.1101,-305.02531 117.91374,-305.02531 z M 103.2216,-333.14394 L 103.2216,-333.14394 z M 103.2216,-333.14394 C 103.11577,-333.93673 102.96963,-334.55679 102.80176,-335.21316 C 101.69663,-339.53416 100.2179,-342.16153 97.043938,-345.3793 C 93.958208,-348.50762 90.488134,-350.42644 86.42796,-351.28706 C 82.4419,-352.13197 45.472822,-352.13422 41.474993,-351.28706 C 33.885682,-349.67886 27.380491,-343.34759 25.371094,-335.633 C 25.286417,-335.3079 25.200722,-334.40363 25.131185,-333.2339 L 103.2216,-333.14394 z M 64.176391,-389.01277 C 58.091423,-389.00227 52.013792,-385.83757 48.882186,-379.47638 C 47.628229,-376.92924 47.532697,-376.52293 47.532697,-372.24912 C 47.532697,-368.02543 47.619523,-367.53023 48.822209,-364.99187 C 50.995125,-360.40581 54.081354,-357.67937 59.048334,-355.90531 C 60.598733,-355.35157 62.040853,-355.17797 64.86613,-355.27555 C 68.233081,-355.39187 68.925861,-355.58211 71.703539,-356.95492 C 75.281118,-358.72306 77.90719,-361.35074 79.680517,-364.96188 C 80.736152,-367.11156 80.820083,-367.68829 80.820085,-372.0392 C 80.820081,-376.56329 80.765213,-376.87662 79.470596,-379.50637 C 76.3443,-385.85678 70.261355,-389.02327 64.176391,-389.01277 z",
+              fillColor: '#24A800',
+              fillOpacity: .6,
+            
+              strokeWeight: 0,
+              scale: .1,
+             
+          }
+    
+      var myClientInfo = {
+        index: 0, //chi so cua client
+        phonenumber: 0,
+        key: 0, //key cua diem cua phonecall
+        location: 0,
+        available: 0, //dang co cong viec
+        type: 0 //kieu dat cua khacg hang oringin or premium
+      };
+      
+      var taxiInfo = {
+        location: null,
+        driverName : null,
+        status: null,
+        key: null,
+        pointKey: null,
+        selectedDriverStringAddress: 0
+      }
+      var apiAttributes = new Api();
+      var appAttributes = new App();
+
+
+    function initMap()
+    {
+        apiAttributes.defaultInit();
+        //tim client co san de
+        appAttributes.findclient().then(function(res){
+
+           if(res){
+              //bat client de giao tiep
+              appAttributes.TurnOnClient();
+              //them su kien bat khi du lieu client tren firebase thay doi
+              appAttributes.AddListenerWhenReceivePoint();
+
+              //neu lay duoc location tren firbase thi doc no 
+              if(myClientInfo.location)
+              {
+                  if(myClientInfo.available == 0){
+                    alert("Bạn hãy làm công việc còn dang dỡ");
+                    appAttributes.ExecuteLocationFromPhoneApp(myClientInfo.location);
+
+                  }
+                  else{
+                    alert("Hãy chờ tin hiệu từ điện thoại viên");
+                  }
+
+              }
+             
+           }
+           else{
+
+           }
+          
+         
+        }).catch(function(error){
+           console.log(error);
+        });
+      
+       // initCircle(apiAttributes.api_map);
+
+       
+        apiAttributes.listenEventAdjustLocation();
+
+    }
+
+ 
+      //dung vue de bat su kien cac button      
+      var app = new Vue({
+        el: '#app',
+        data: {
+
+          message: 'Hello Vue World',
+        
+        },
+        methods: {
+         
+          find: function(distance){
+            if(appAttributes.app_currentStringAddress == 0) return;
+            apiAttributes.clearOverlays()
+            appAttributes.setDefaultSearchTaxiConfig()
+
+            appAttributes.app_maxDistance = distance
+         
+            apiAttributes.createMarker(apiAttributes.api_map, appAttributes.app_currentCustomerPoint, null, null)
+            appAttributes.ReadTaxisLocation(appAttributes.app_currentCustomerPoint, apiAttributes.api_map)
+             
+           setTimeout(function(){
+              if(appAttributes.app_countTaxis==0)
+                alert("Không tìm thấy taxi");
+            }, 1000)
+          },
+          findOrigin: function() {
+            if(appAttributes.app_currentStringAddress == 0) return;
+            apiAttributes.clearOverlays()
+            appAttributes.setDefaultSearchTaxiConfig()
+            appAttributes.app_currentCustomerPoint= appAttributes.app_originCustomerPoint
+            apiAttributes.createMarker(apiAttributes.api_map, appAttributes.app_currentCustomerPoint, null, null)
+           
+          },
+          findPath: function(){
+            if(taxiInfo.selectedDriverStringAddress == 0) return;
+            apiAttributes.api_directionsDisplay.setMap(apiAttributes.api_map);
+            apiAttributes.api_directionsService.route({
+                      origin: taxiInfo.selectedDriverStringAddress,
+                      destination: appAttributes.app_currentStringAddress,
+                      travelMode: 'DRIVING'
+                    }, function(response, status) {
+                      if (status === 'OK') {
+                        apiAttributes.api_directionsDisplay.setDirections(response);
+                        console.log("min " + appAttributes.app_minDistance);
+                      } else {
+                        window.alert('Directions request failed due to ' + status);
+                      }
+            });
+
+            console.log(taxiInfo.selectedDriverStringAddress + " " + taxiInfo.driverName);
+            //console.log(appAttributes.app_minDistance + " "+ taxiInfo.selectedDriverStringAddress);
+
+          },
+          complete: function(){
+            if(myClientInfo.available == 0){
+              alert("Đã gửi tín hiệu cho app 3. Vui lòng chờ sự kiện từ app 1");
+
+              
+            //bam vao hoan thanh de gui len app 3
+            //gui ve app 1 là đã định vị
+              appAttributes.SendPointStatusBackPhoneApp();
+              appAttributes.SendPointToManagerApp(); //=> tra ve point ref
+
+              //gui diem cho taxi bao gom ca key cua poin
+
+              //...................ham se update cac thuoc tinh phonenumber, pointkey, type
+              appAttributes.updateTaxiToPickCustomer(); //set status =1 cho taxi the hien trang thai xe dang di don khach
+
+              appAttributes.updateAvailable(1);
+
+            }else{
+              apiAttributes.clearOverlays();
+              appAttributes.setDefaultSearchTaxiConfig();
+              alert("Đã gửi điểm rồi, vui long chờ tín hiện từ app 1")
+            }
+            
+          }
+
+        }
+      })
+      //khoanh vung khu vuc de tao ra taxis
+
+
+      //fireabse
+      
+
+
+
+       //them du
+      function addToFirebase(i,data){
+          writeTaxisData(i,data);
+      }
+      function writeTaxisData(i,data) {
+        firebase.database().ref('Taxis').push({
+          driverName: data.driverName,
+          lat: data.lat,
+          lng : data.lng,
+          status : data.status
+        });
+      }
+      function initCircle(map){
+
+        var circle = new google.maps.Circle({
+            center: map.getCenter(),
+            radius: 1000, // meters
+            strokeColor: "#0000FF",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#0000FF",
+            fillOpacity: 0.26
+        });
+        circle.setMap(map);
+
+        //tao ngau nhien 100 diem
+
+        var bounds = circle.getBounds();
+        map.fitBounds(bounds);
+        var sw = bounds.getSouthWest();
+        var ne = bounds.getNorthEast();
+        for (var i = 0; i < 100; i++) {
+          var ptLat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
+          var ptLng = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
+          var point = new google.maps.LatLng(ptLat, ptLng);
+          if (google.maps.geometry.spherical.computeDistanceBetween(point, circle.getCenter()) < circle.getRadius()) {
+            apiAttributes.createMarker(map, point, "marker " + i,icon);
+            var data = {
+              driverName: null,
+              lat: null,
+              lng: null,
+              status: 0, //status = 0 : dang ranh, status == 1 da nhan va dang tren duong don khach
+              username: null,
+              password: null,
+              pointKey: 0,
+              cusPhonenumber: 0,
+              type: 0
+            };
+            data.lat = ptLat;
+            data.lng = ptLng;
+            data.driverName = "Driver " + i;
+            username = "driver" + i;
+            password = "driver" + i;
+            //console.log(data);
+            addToFirebase(i,data);
+            // break;
+          }
+          else{
+            i--;
+            console.log("not contain");
+          }
+        }
+      }
+
+
+    
+
+  
+      window.onbeforeunload = function () {
+            //console.log("abasd");
+            //khi leave khoi page thi tat quan ly
+             appAttributes.TurnOffClient();
+             return "Asdasds";
+      };
+      //click chon 1 noi se tu add vao database
+      /*var circle;
+      var infowindow = new google.maps.InfoWindow({});
+
+      function initialize() {
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: new google.maps.LatLng(10.801375268539708, 106.71134233474731),
+          mapTypeId: google.maps.MapTypeId.HYBRID
+        });
+
+        circle = new google.maps.Circle({
+          center: map.getCenter(),
+          radius: 1000, // meters
+          strokeColor: "#0000FF",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#0000FF",
+          fillOpacity: 0.26
+      });
+
+        circle.setMap(map);
+
+        var bounds = circle.getBounds();
+        map.fitBounds(bounds);
+        var sw = bounds.getSouthWest();
+        var ne = bounds.getNorthEast();
+        for (var i = 0; i < 100; i++) {
+          var ptLat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
+          var ptLng = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
+          var point = new google.maps.LatLng(ptLat, ptLng);
+          if (google.maps.geometry.spherical.computeDistanceBetween(point, circle.getCenter()) < circle.getRadius()) {
+            createMarker(map, point, "marker " + i);
+            // break;
+          }
+        }
+
+      }
+
+      function createMarker(map, point, content) {
+        var marker = new google.maps.Marker({
+          position: point,
+          map: map
+        });
+        google.maps.event.addListener(marker, "click", function(evt) {
+          infowindow.setContent(content + "<br>" + marker.getPosition().toUrlValue(6));
+          infowindow.open(map, marker);
+        });
+        return marker;
+      }*/
+      //google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script> 
+    
+   <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe2djMmwmVr0AXPbmSQLksDRWFpzRVQ8g&libraries=places&callback=initMap"
+        async defer></script> -->
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8aZnYa2rBuQaA_asqmH65T5FbqMq2Pyc&libraries=places&callback=initMap"
+        async defer></script>    
+  </body>
+</html>

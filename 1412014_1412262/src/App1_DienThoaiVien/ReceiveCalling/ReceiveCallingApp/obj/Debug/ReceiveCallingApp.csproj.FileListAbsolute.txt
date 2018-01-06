@@ -1,0 +1,94 @@
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.exe.config
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.exe
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.pdb
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\MySql.Data.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\MySql.Data.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csprojResolveAssemblyReference.cache
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.Form1.resources
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.Properties.Resources.resources
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.GenerateResource.Cache
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.CoreCompileInputs.cache
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.exe
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.pdb
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Win32.Primitives.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Newtonsoft.Json.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.AppContext.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Console.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Globalization.Calendars.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.IO.Compression.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.IO.Compression.ZipFile.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.IO.FileSystem.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.IO.FileSystem.Primitives.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Sockets.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Reactive.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Security.Cryptography.Algorithms.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Security.Cryptography.Encoding.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Security.Cryptography.Primitives.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Xml.ReaderWriter.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Newtonsoft.Json.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Reactive.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\FireSharp.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Extensions.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Primitives.dll
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Extensions.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Primitives.xml
+D:\1412262\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.App.config
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.exe.config
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.exe
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.pdb
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\FireSharp.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csprojResolveAssemblyReference.cache
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.Form1.resources
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.Properties.Resources.resources
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.GenerateResource.Cache
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.CoreCompileInputs.cache
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.exe
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.pdb
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Newtonsoft.Json.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.xml
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Newtonsoft.Json.xml
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Extensions.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Primitives.dll
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Extensions.xml
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Primitives.xml
+D:\1412262\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.App.config
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.exe.config
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.exe
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\ReceiveCallingApp.pdb
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\FireSharp.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.xml
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.App.config
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csprojResolveAssemblyReference.cache
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.Form1.resources
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.Properties.Resources.resources
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.GenerateResource.Cache
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.CoreCompileInputs.cache
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.exe
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.pdb

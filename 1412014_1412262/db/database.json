@@ -1,0 +1,745 @@
+{
+  "LocatedApp" : {
+    "locaters" : [ {
+      "available" : 1,
+      "key" : 1,
+      "location" : "Đại Học Hutech",
+      "onoff" : 0,
+      "phonenumber" : "0123401234"
+    }, {
+      "available" : 1,
+      "key" : 1,
+      "location" : "Nam Kỳ Khởi Nghĩa, quận 1",
+      "onoff" : 0,
+      "phonenumber" : "0914275797"
+    }, {
+      "available" : 1,
+      "key" : 3,
+      "location" : "Bùi Đình Túy, Bình Thạnh",
+      "onoff" : 0,
+      "phonenumber" : "0123401234"
+    } ]
+  },
+  "Phonecalls" : {
+    "0123401234" : {
+      "locations" : [ {
+        "detail" : "abcsx",
+        "status" : 3
+      }, {
+        "detail" : "Đại Học Hutech",
+        "status" : 1
+      }, {
+        "detail" : "the Coffe house, Bình Thạnh, TPHCM",
+        "status" : 1
+      }, {
+        "detail" : "Bùi Đình Túy, Bình Thạnh",
+        "status" : 1
+      } ],
+      "type" : "premium"
+    },
+    "123456778" : {
+      "locations" : [ {
+        "detail" : "Linh Xuan, quan Thu Duc",
+        "status" : 2
+      }, {
+        "detail" : "Hiệp Bình Chánh, Thủ Đức, TpHCM",
+        "status" : 3
+      }, {
+        "detail" : "67 Đinh Bộ Lĩnh, Bình Thạnh, TPHCM",
+        "status" : 1
+      }, {
+        "detail" : "Nhà Thờ Hàng Xanh, TPHCM",
+        "status" : 1
+      }, {
+        "detail" : "ádasdwdads",
+        "status" : 3
+      } ],
+      "type" : "premium"
+    },
+    "0914275797" : {
+      "locations" : [ {
+        "detail" : "Nam Kỳ Khởi Nghĩa, quận 1",
+        "status" : 3
+      }, {
+        "detail" : "Hàng Xanh, Bình Thạnh, TPHCM",
+        "status" : 1
+      } ],
+      "type" : "premium"
+    },
+    "0927574546" : {
+      "locations" : [ {
+        "detail" : "Nguyễn Văn Cừ, ĐH KHTN, TPHCM",
+        "status" : 1
+      }, {
+        "detail" : "Hàng Xanh XVNT, quận Bình Thạnh",
+        "status" : 1
+      } ],
+      "type" : "origin"
+    },
+    "01293046568" : {
+      "locations" : [ {
+        "detail" : "Nguyễn Văn Cừ, ĐH KHTN, TpHCM",
+        "status" : 1
+      }, {
+        "detail" : "Lý Chính Thắng, quận 1, TPHCM",
+        "status" : 1
+      } ],
+      "type" : "premium"
+    }
+  },
+  "Points" : {
+    "-Kz7c_yON2RWgxwEt4F0" : {
+      "cusPos" : "67 Đinh Bộ Lĩnh, Bình Thạnh, TPHCM",
+      "driverName" : "Driver 8",
+      "status" : 2,
+      "taxiPos" : "Hẻm 82 Đinh Bộ Lĩnh, phường 26, Bình Thạnh, Hồ Chí Minh, Vietnam"
+    },
+    "-Kz7fiINmr7mp46L73CI" : {
+      "cusPos" : "Hiệp Bình Chánh, Thủ Đức",
+      "status" : 1
+    },
+    "-Kz7hLONMVUdsZASoaJt" : {
+      "cusPos" : "Hàng Xanh, Bình Thạnh, TPHCM",
+      "driverName" : "Driver 11",
+      "status" : 2,
+      "taxiPos" : "Hẻm 206 Xô Viết Nghệ Tĩnh, phường 21, Bình Thạnh, Hồ Chí Minh, Vietnam"
+    },
+    "-Kz7iN-5AX1OH-rnEGKj" : {
+      "cusPos" : "abcsx",
+      "status" : 0
+    },
+    "-Kz7jCJfqsJg1-u0mbOS" : {
+      "cusPos" : "Đại Học Hutech",
+      "driverName" : "Driver 28",
+      "status" : 2,
+      "taxiPos" : "36 Đường D2, Phường 25, Bình Thạnh, Hồ Chí Minh, Vietnam"
+    },
+    "-Kz7nInbt2gnnT1oAjU5" : {
+      "cusPos" : "the Coffe house, Bình Thạnh, TPHCM",
+      "driverName" : "Driver 21",
+      "status" : 2,
+      "taxiPos" : "2 Đường D3, Phường 25, Bình Thạnh, Hồ Chí Minh, Vietnam"
+    },
+    "-KzCt46rCxi_JjXxX3am" : {
+      "cusPos" : "Nhà Thờ Hàng Xanh, TPHCM",
+      "driverName" : "Driver 1",
+      "status" : 2,
+      "taxiPos" : "438-440 Điện Biên Phủ, phường 17, Bình Thạnh, Hồ Chí Minh, Vietnam"
+    },
+    "-KzCuGT0N2EtWQ_WKe0V" : {
+      "cusPos" : "ádasdwdads",
+      "status" : 0
+    },
+    "-KzD-bUEASUkHpQRNXSM" : {
+      "cusPos" : "Bùi Đình Túy, Bình Thạnh",
+      "driverName" : "Driver 38",
+      "status" : 2,
+      "taxiPos" : "32 Bùi Đình Tuý, phường 12, Bình Thạnh, Hồ Chí Minh 84800, Vietnam"
+    }
+  },
+  "Taxis" : {
+    "-Kz1Wres7WWvZAAwOubn" : {
+      "driverName" : "Driver 0",
+      "lat" : 10.798271242803558,
+      "lng" : 106.7088375856976,
+      "status" : 0
+    },
+    "-Kz1Wrf-k6RPUAQkGrQ_" : {
+      "driverName" : "Driver 1",
+      "lat" : 10.801085338254646,
+      "lng" : 106.70978312199844,
+      "status" : 1
+    },
+    "-Kz1Wrf4UTguxdwIV8ue" : {
+      "driverName" : "Driver 2",
+      "lat" : 10.792646223648568,
+      "lng" : 106.71282608930916,
+      "status" : 0
+    },
+    "-Kz1Wrf8cubS-TCkbrJ6" : {
+      "driverName" : "Driver 3",
+      "lat" : 10.797992172054304,
+      "lng" : 106.70405096777945,
+      "status" : 0
+    },
+    "-Kz1WrfBNI3bSQxpneLA" : {
+      "driverName" : "Driver 4",
+      "lat" : 10.807058040589702,
+      "lng" : 106.71497118980267,
+      "status" : 0
+    },
+    "-Kz1WrfFMuvUCmqI03nu" : {
+      "driverName" : "Driver 5",
+      "lat" : 10.794295982297827,
+      "lng" : 106.7085079680071,
+      "status" : 0
+    },
+    "-Kz1WrfHwcaoxsc5IW-g" : {
+      "driverName" : "Driver 6",
+      "lat" : 10.797812914333226,
+      "lng" : 106.70520549554512,
+      "status" : 0
+    },
+    "-Kz1WrfJypfyU9WOHOMN" : {
+      "driverName" : "Driver 7",
+      "lat" : 10.808689644299477,
+      "lng" : 106.70702878013435,
+      "status" : 0
+    },
+    "-Kz1WrfLGVgZJRlSXGJU" : {
+      "driverName" : "Driver 8",
+      "lat" : 10.807767218529886,
+      "lng" : 106.7096602512435,
+      "status" : 1
+    },
+    "-Kz1WrfMuCYp5Rq_Hxpj" : {
+      "driverName" : "Driver 9",
+      "lat" : 10.800720646387862,
+      "lng" : 106.70650049039682,
+      "status" : 0
+    },
+    "-Kz1WrfPXGQQkMVdqSPv" : {
+      "driverName" : "Driver 10",
+      "lat" : 10.802023925644903,
+      "lng" : 106.70441548902048,
+      "status" : 0
+    },
+    "-Kz1WrfTVCICWs0CFnTY" : {
+      "driverName" : "Driver 11",
+      "lat" : 10.797748562641562,
+      "lng" : 106.71146021436589,
+      "status" : 1
+    },
+    "-Kz1WrfU65JgHtEn6nUE" : {
+      "driverName" : "Driver 12",
+      "lat" : 10.806355557791965,
+      "lng" : 106.70699980044813,
+      "status" : 0
+    },
+    "-Kz1WrfVxyVVbf2d3JCK" : {
+      "driverName" : "Driver 13",
+      "lat" : 10.793096371545662,
+      "lng" : 106.70863169742029,
+      "status" : 0
+    },
+    "-Kz1WrfWZpVQ7hHrypyA" : {
+      "driverName" : "Driver 14",
+      "lat" : 10.793393930246431,
+      "lng" : 106.71332801003878,
+      "status" : 0
+    },
+    "-Kz1WrfZEtJlGTB-wPVi" : {
+      "driverName" : "Driver 15",
+      "lat" : 10.803313730513189,
+      "lng" : 106.71809936120856,
+      "status" : 0
+    },
+    "-Kz1WrfZEtJlGTB-wPVj" : {
+      "driverName" : "Driver 16",
+      "lat" : 10.80030685904039,
+      "lng" : 106.70271597629095,
+      "status" : 0
+    },
+    "-Kz1WrfaLjyuTbzcA8KZ" : {
+      "driverName" : "Driver 17",
+      "lat" : 10.80789548862339,
+      "lng" : 106.71595040655124,
+      "status" : 0
+    },
+    "-Kz1WrfbBaq4XdUqxjvO" : {
+      "driverName" : "Driver 18",
+      "lat" : 10.801353168417275,
+      "lng" : 106.71890295878828,
+      "status" : 0
+    },
+    "-Kz1Wrfcq8BTKNgeRFO4" : {
+      "driverName" : "Driver 19",
+      "lat" : 10.804926708119249,
+      "lng" : 106.70854321868252,
+      "status" : 0
+    },
+    "-Kz1Wrfd33eoYpHtgslx" : {
+      "driverName" : "Driver 20",
+      "lat" : 10.794192156517946,
+      "lng" : 106.70676940963811,
+      "status" : 0
+    },
+    "-Kz1Wrfg-T20HfITbIdu" : {
+      "driverName" : "Driver 21",
+      "lat" : 10.804823487203624,
+      "lng" : 106.71687729642385,
+      "status" : 1
+    },
+    "-Kz1WrfhFzPasqNrfrvS" : {
+      "driverName" : "Driver 22",
+      "lat" : 10.795169296110323,
+      "lng" : 106.711567232856,
+      "status" : 0
+    },
+    "-Kz1WrfjhthnF5CpdTzN" : {
+      "driverName" : "Driver 23",
+      "lat" : 10.799883237512597,
+      "lng" : 106.70593383159049,
+      "status" : 0
+    },
+    "-Kz1Wrfks30I0p97CkDj" : {
+      "driverName" : "Driver 24",
+      "lat" : 10.794999755132139,
+      "lng" : 106.70790179722285,
+      "status" : 0
+    },
+    "-Kz1WrflplRdiVK9Z_7z" : {
+      "driverName" : "Driver 25",
+      "lat" : 10.800979496344567,
+      "lng" : 106.71026191537264,
+      "status" : 0
+    },
+    "-Kz1Wrfmet4cQcFaWVLS" : {
+      "driverName" : "Driver 26",
+      "lat" : 10.80004206657386,
+      "lng" : 106.706074811801,
+      "status" : 0
+    },
+    "-Kz1Wrfq-zKQ7N3xwUkb" : {
+      "driverName" : "Driver 27",
+      "lat" : 10.798828423917245,
+      "lng" : 106.7163604055824,
+      "status" : 0
+    },
+    "-Kz1WrfrMVSm368wqqF2" : {
+      "driverName" : "Driver 28",
+      "lat" : 10.802942709031074,
+      "lng" : 106.71638025534602,
+      "status" : 1
+    },
+    "-Kz1WrfsDvXnGZlsbCPB" : {
+      "driverName" : "Driver 29",
+      "lat" : 10.79659756505311,
+      "lng" : 106.7098992253756,
+      "status" : 0
+    },
+    "-Kz1WrfwFCWtNWTbnVjJ" : {
+      "driverName" : "Driver 30",
+      "lat" : 10.804674633804847,
+      "lng" : 106.7063021942546,
+      "status" : 0
+    },
+    "-Kz1Wrfxk_lrV7-pKn7n" : {
+      "driverName" : "Driver 31",
+      "lat" : 10.808849190016291,
+      "lng" : 106.71211743970657,
+      "status" : 0
+    },
+    "-Kz1WrfzmNDm2M6QCOjm" : {
+      "driverName" : "Driver 32",
+      "lat" : 10.801162246776858,
+      "lng" : 106.70687524102782,
+      "status" : 0
+    },
+    "-Kz1Wrg-ScWzT8mhNptz" : {
+      "driverName" : "Driver 33",
+      "lat" : 10.807491689469504,
+      "lng" : 106.71803658579945,
+      "status" : 0
+    },
+    "-Kz1Wrg-ScWzT8mhNpu-" : {
+      "driverName" : "Driver 34",
+      "lat" : 10.806697787031291,
+      "lng" : 106.71750148600165,
+      "status" : 0
+    },
+    "-Kz1Wrg0WN18WCzKRQlS" : {
+      "driverName" : "Driver 35",
+      "lat" : 10.801133046517464,
+      "lng" : 106.70980441351062,
+      "status" : 0
+    },
+    "-Kz1Wrg2NGWwT-WzDK_Q" : {
+      "driverName" : "Driver 36",
+      "lat" : 10.797592721886563,
+      "lng" : 106.70492800082388,
+      "status" : 0
+    },
+    "-Kz1Wrg3CClWPq_sBLqp" : {
+      "driverName" : "Driver 37",
+      "lat" : 10.805390377598412,
+      "lng" : 106.70584690529282,
+      "status" : 0
+    },
+    "-Kz1Wrg4X3rbRi74lo31" : {
+      "driverName" : "Driver 38",
+      "lat" : 10.8082129480379,
+      "lng" : 106.70738039964415,
+      "status" : 1
+    },
+    "-Kz1Wrg5VEvk3UR0RmDf" : {
+      "driverName" : "Driver 39",
+      "lat" : 10.805308421321183,
+      "lng" : 106.71367384794577,
+      "status" : 0
+    },
+    "-Kz1Wrg6n5oyNeNWENWB" : {
+      "driverName" : "Driver 40",
+      "lat" : 10.80228108785516,
+      "lng" : 106.70808140260125,
+      "status" : 0
+    },
+    "-Kz1Wrg9eHMfCDnytrhQ" : {
+      "driverName" : "Driver 41",
+      "lat" : 10.809505841572381,
+      "lng" : 106.71188703453036,
+      "status" : 0
+    },
+    "-Kz1WrgABrRnvhoEazi1" : {
+      "driverName" : "Driver 42",
+      "lat" : 10.80496566622078,
+      "lng" : 106.71173080488558,
+      "status" : 0
+    },
+    "-Kz1WrgBnw_fuhxBbtq_" : {
+      "driverName" : "Driver 43",
+      "lat" : 10.805850958970078,
+      "lng" : 106.71753019383713,
+      "status" : 0
+    },
+    "-Kz1WrgCa_O3fHA3c8PG" : {
+      "driverName" : "Driver 44",
+      "lat" : 10.795615470741934,
+      "lng" : 106.70620570368246,
+      "status" : 0
+    },
+    "-Kz1WrgDvhQzQWqpiz9M" : {
+      "driverName" : "Driver 45",
+      "lat" : 10.796067690107705,
+      "lng" : 106.71059249800003,
+      "status" : 0
+    },
+    "-Kz1WrgIC810XB3o13Cu" : {
+      "driverName" : "Driver 46",
+      "lat" : 10.79661042220595,
+      "lng" : 106.70740377805174,
+      "status" : 0
+    },
+    "-Kz1WrgLkRv3_Bpg_Nmh" : {
+      "driverName" : "Driver 47",
+      "lat" : 10.799140175314873,
+      "lng" : 106.71500788619326,
+      "status" : 0
+    },
+    "-Kz1WrgOBOtH7bGh5lrm" : {
+      "driverName" : "Driver 48",
+      "lat" : 10.798920057745498,
+      "lng" : 106.71286151341945,
+      "status" : 0
+    },
+    "-Kz1WrgPFr4y4vEJQH0P" : {
+      "driverName" : "Driver 49",
+      "lat" : 10.795374860996608,
+      "lng" : 106.70978934748202,
+      "status" : 0
+    },
+    "-Kz1WrgTJcfn8SaI1kpT" : {
+      "driverName" : "Driver 50",
+      "lat" : 10.804925382551449,
+      "lng" : 106.71411867657983,
+      "status" : 0
+    },
+    "-Kz1WrgXqbXMe_g9PATD" : {
+      "driverName" : "Driver 51",
+      "lat" : 10.806968950510424,
+      "lng" : 106.71021745712305,
+      "status" : 0
+    },
+    "-Kz1WrgZHnPbzTuTsmxh" : {
+      "driverName" : "Driver 52",
+      "lat" : 10.792630126797528,
+      "lng" : 106.71191303860418,
+      "status" : 0
+    },
+    "-Kz1Wrgc_2DdHWin-KVz" : {
+      "driverName" : "Driver 53",
+      "lat" : 10.794726427755537,
+      "lng" : 106.70655627106672,
+      "status" : 0
+    },
+    "-Kz1WrghH8r0rjzJ6lmm" : {
+      "driverName" : "Driver 54",
+      "lat" : 10.80840574101203,
+      "lng" : 106.71097859728152,
+      "status" : 0
+    },
+    "-Kz1WrgkbF4W-vLyBfd3" : {
+      "driverName" : "Driver 55",
+      "lat" : 10.798373372950621,
+      "lng" : 106.71306929565982,
+      "status" : 0
+    },
+    "-Kz1WrgnlsC9xdUknejn" : {
+      "driverName" : "Driver 56",
+      "lat" : 10.807602851627616,
+      "lng" : 106.71527465776184,
+      "status" : 0
+    },
+    "-Kz1Wrgom6Y950jC3WMA" : {
+      "driverName" : "Driver 57",
+      "lat" : 10.804620479868516,
+      "lng" : 106.71880696732686,
+      "status" : 0
+    },
+    "-Kz1WrgppUjzB-A5O0as" : {
+      "driverName" : "Driver 58",
+      "lat" : 10.800371234453607,
+      "lng" : 106.71336916395968,
+      "status" : 0
+    },
+    "-Kz1Wrgqm1_AfI_2thjd" : {
+      "driverName" : "Driver 59",
+      "lat" : 10.799749372528535,
+      "lng" : 106.71498953403051,
+      "status" : 0
+    },
+    "-Kz1WrgrheZ7_aliZRIL" : {
+      "driverName" : "Driver 60",
+      "lat" : 10.797665698120614,
+      "lng" : 106.71018839679792,
+      "status" : 0
+    },
+    "-Kz1WrguuC1b21Y2eSsQ" : {
+      "driverName" : "Driver 61",
+      "lat" : 10.804449221043685,
+      "lng" : 106.71676451869206,
+      "status" : 0
+    },
+    "-Kz1Wrgv8GK3MDfWr7sZ" : {
+      "driverName" : "Driver 62",
+      "lat" : 10.795723123622079,
+      "lng" : 106.7179353050925,
+      "status" : 0
+    },
+    "-Kz1Wrgz64u50zNYJBIH" : {
+      "driverName" : "Driver 63",
+      "lat" : 10.806547944838544,
+      "lng" : 106.70655549665825,
+      "status" : 0
+    },
+    "-Kz1Wrh-mAQsApTn1pjN" : {
+      "driverName" : "Driver 64",
+      "lat" : 10.803899109100874,
+      "lng" : 106.71582339438527,
+      "status" : 0
+    },
+    "-Kz1Wrh2or_6fwUw7wjF" : {
+      "driverName" : "Driver 65",
+      "lat" : 10.808429385353364,
+      "lng" : 106.7141281688827,
+      "status" : 0
+    },
+    "-Kz1Wrh4mY1sREtOqeJs" : {
+      "driverName" : "Driver 66",
+      "lat" : 10.80515847534161,
+      "lng" : 106.71504267544667,
+      "status" : 0
+    },
+    "-Kz1Wrh5g9D0Eq4Fmkq9" : {
+      "driverName" : "Driver 67",
+      "lat" : 10.80149635530781,
+      "lng" : 106.71003798761271,
+      "status" : 0
+    },
+    "-Kz1Wrh6Z_6MCGBpPmr3" : {
+      "driverName" : "Driver 68",
+      "lat" : 10.807031349901342,
+      "lng" : 106.7131696609944,
+      "status" : 0
+    },
+    "-Kz1Wrh773-ZqAIYmh_u" : {
+      "driverName" : "Driver 69",
+      "lat" : 10.800921155040601,
+      "lng" : 106.710732756019,
+      "status" : 0
+    },
+    "-Kz1Wrh9h3BQ5Z-fbdIL" : {
+      "driverName" : "Driver 70",
+      "lat" : 10.803646816558933,
+      "lng" : 106.70615554417554,
+      "status" : 0
+    },
+    "-Kz1WrhDC_9POxVRTFek" : {
+      "driverName" : "Driver 71",
+      "lat" : 10.801152742130318,
+      "lng" : 106.70923848051413,
+      "status" : 0
+    },
+    "-Kz1WrhFDh4xyoi9ec-n" : {
+      "driverName" : "Driver 72",
+      "lat" : 10.79900277139574,
+      "lng" : 106.71988635772215,
+      "status" : 0
+    },
+    "-Kz1WrhGaSk40-HLrArW" : {
+      "driverName" : "Driver 73",
+      "lat" : 10.796586510980191,
+      "lng" : 106.71639337052274,
+      "status" : 0
+    },
+    "-Kz1WrhJNjwcjuUJInhj" : {
+      "driverName" : "Driver 74",
+      "lat" : 10.807202955370451,
+      "lng" : 106.7145679162193,
+      "status" : 0
+    },
+    "-Kz1WrhKgLXbX8fDcSMX" : {
+      "driverName" : "Driver 75",
+      "lat" : 10.804824266011295,
+      "lng" : 106.7138409731101,
+      "status" : 0
+    },
+    "-Kz1WrhLjVfnbIUUr3os" : {
+      "driverName" : "Driver 76",
+      "lat" : 10.798191189229147,
+      "lng" : 106.70632284720361,
+      "status" : 0
+    },
+    "-Kz1WrhScgNpweS1XQz4" : {
+      "driverName" : "Driver 77",
+      "lat" : 10.799573235868387,
+      "lng" : 106.7201869624216,
+      "status" : 0
+    },
+    "-Kz1WrhXqCdI0lWHeH6E" : {
+      "driverName" : "Driver 78",
+      "lat" : 10.803062886305833,
+      "lng" : 106.70337559453743,
+      "status" : 0
+    },
+    "-Kz1Wrh_FaR5z2czLgDj" : {
+      "driverName" : "Driver 79",
+      "lat" : 10.793923250214238,
+      "lng" : 106.7153197984831,
+      "status" : 0
+    },
+    "-Kz1WrhcVFV-T36gm902" : {
+      "driverName" : "Driver 80",
+      "lat" : 10.804775236232732,
+      "lng" : 106.7119940848679,
+      "status" : 0
+    },
+    "-Kz1WrheqF9eD3fFXEA2" : {
+      "driverName" : "Driver 81",
+      "lat" : 10.796702903068228,
+      "lng" : 106.71891326954514,
+      "status" : 0
+    },
+    "-Kz1WrhfdbJ3JWZmLeZJ" : {
+      "driverName" : "Driver 82",
+      "lat" : 10.795374690654445,
+      "lng" : 106.70840809237954,
+      "status" : 0
+    },
+    "-Kz1Wrhhwn-vVFjmI_sb" : {
+      "driverName" : "Driver 83",
+      "lat" : 10.804911971767659,
+      "lng" : 106.71911523623525,
+      "status" : 0
+    },
+    "-Kz1WrhlU8NLbAnMV5F9" : {
+      "driverName" : "Driver 84",
+      "lat" : 10.800391462965974,
+      "lng" : 106.71034362427125,
+      "status" : 0
+    },
+    "-Kz1WrhmV_YDX0ZUDORI" : {
+      "driverName" : "Driver 85",
+      "lat" : 10.807216647780585,
+      "lng" : 106.71662649049087,
+      "status" : 0
+    },
+    "-Kz1WrhoVtYfYTlu606H" : {
+      "driverName" : "Driver 86",
+      "lat" : 10.804189864903277,
+      "lng" : 106.70482183910124,
+      "status" : 0
+    },
+    "-Kz1Wrhps3-V_QNHevnM" : {
+      "driverName" : "Driver 87",
+      "lat" : 10.80471369388769,
+      "lng" : 106.70934656921133,
+      "status" : 0
+    },
+    "-Kz1WrhrllfduGavKpyk" : {
+      "driverName" : "Driver 88",
+      "lat" : 10.799506629681701,
+      "lng" : 106.70482455786316,
+      "status" : 0
+    },
+    "-Kz1Wrhtt67MWpB6FdlM" : {
+      "driverName" : "Driver 89",
+      "lat" : 10.803440329321498,
+      "lng" : 106.71453498981347,
+      "status" : 0
+    },
+    "-Kz1WrhuQNT50c2MenSf" : {
+      "driverName" : "Driver 90",
+      "lat" : 10.797922464536361,
+      "lng" : 106.71729571179522,
+      "status" : 0
+    },
+    "-Kz1WrhwUWuiKSnBqwMA" : {
+      "driverName" : "Driver 91",
+      "lat" : 10.804075876645026,
+      "lng" : 106.70598633761153,
+      "status" : 0
+    },
+    "-Kz1WrhzMNurGw4Y7RPl" : {
+      "driverName" : "Driver 92",
+      "lat" : 10.8047332113024,
+      "lng" : 106.70996844034897,
+      "status" : 0
+    },
+    "-Kz1Wri-eyO3zQLrVwXU" : {
+      "driverName" : "Driver 93",
+      "lat" : 10.807756298884996,
+      "lng" : 106.71621765342242,
+      "status" : 0
+    },
+    "-Kz1Wri0Kj9QyE-QivD3" : {
+      "driverName" : "Driver 94",
+      "lat" : 10.796962075635559,
+      "lng" : 106.71052614159098,
+      "status" : 0
+    },
+    "-Kz1Wri25x_9qM590opj" : {
+      "driverName" : "Driver 95",
+      "lat" : 10.807893244451265,
+      "lng" : 106.70938712135855,
+      "status" : 0
+    },
+    "-Kz1Wri25x_9qM590opk" : {
+      "driverName" : "Driver 96",
+      "lat" : 10.806264584181108,
+      "lng" : 106.71713109282477,
+      "status" : 0
+    },
+    "-Kz1Wri4SJRMbY-SCq7A" : {
+      "driverName" : "Driver 97",
+      "lat" : 10.808195616559665,
+      "lng" : 106.7169807634845,
+      "status" : 0
+    },
+    "-Kz1Wri5uFqUrpfgbSRm" : {
+      "driverName" : "Driver 98",
+      "lat" : 10.80547884973824,
+      "lng" : 106.71307256792797,
+      "status" : 0
+    },
+    "-Kz1Wri6OjbJvFTFNN3X" : {
+      "driverName" : "Driver 99",
+      "lat" : 10.802575556796315,
+      "lng" : 106.7028560051655,
+      "status" : 0
+    },
+    "null" : {
+      "status" : 1
+    }
+  }
+}

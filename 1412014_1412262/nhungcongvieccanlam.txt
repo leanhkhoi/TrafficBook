@@ -1,0 +1,33 @@
+App 1 : 
+	- Khi cuoc goi den da duoc xac dinh vi tri ( da dat xe thanh cong truoc do) thi dieu xe toi 1 cach ngau nhien ( co thoi gian thif lam cho no thong minh hon 1 ty)
+App 2:
+	- them bootstrape cho no dep
+	- Khi gui diem cho app 3 thi gui diem luon cho taxi phu hop (neu co)
+App 3:
+	- Chi su dung cho viec xac dinh toa do diem va duong di ngan nhan tu taxi den diem ( khong dug cho viec viet ham tim xe)
+	- Sap xep cac diem theo ngay
+App 4:
+	- Xay dung api cho viec dang nhap
+	- Viec nhan nut tu choi hay khong phan hoi se tim xe taxi khac
+	 + Tu dong tim 1 taxi khac va gui diem cho no + cap nhap thong tin tai xe tren app 3
+	 + Xay dung moi taxi co tai khoan mat khau + thuoc tinh onoff (on khi dang nhap, off khi dang xuat) + sdt cua khach + vi tri cua khach
+	 - Khi don duoc khach => nhan nut bat dau => chuyen trang thai diem tren app 3 thanh dang di chuyen
+
+
+	 So do 
+
+	 PhoneCall <giaotiep> vs LocaterApp <thongqua> locater 0 , 1 , 2
+	 LocaterApp <giaotiep> vs PhoneCall <thongqua> (:phonenumber <kethop> :key (key: la thu tu cua location 0,1,2...))
+
+	 PhoneCall <guidiem> cho Points ( random taxis ) : chi add Point nen khong can lay thuoc tinh chung
+	 + phoneCall cung khong update gi trong Point nen ko can lay thuoc tinh chung
+
+	 LocaterApp <guidiem> cho Points  :chi add Point voi thong tin co san va LocaterAp khong update Points nen khong can phai co key cua Point 
+
+	 Taxi <capnhat> Points ( cap nhat thuoc tinh :status) <thongqua> key : trong bang Taxis co key cua Point
+
+
+	 ***** database : Trong bang Taxi them 2 thuoc tinh :
+	 - pointKey : key cua point , co value khi App2 gui diem cho App 3 (voi dieu kien co taxi phu hop)
+	 - phonenumber: so dien thoai khach hang , co value khi App2 gui diem cho App 3 (voi dieu kien co taxi phu hop)
+	 - username + password + onoff
