@@ -8,6 +8,7 @@
          }
 
          defaultInit(){
+   
                this.api_map = new google.maps.Map(document.getElementById('map'), {
                  zoom: 14,
                  center: {lat: 10.801375268539708, lng: 106.71134233474731}

@@ -24,18 +24,20 @@
    
     <div id="map"></div>
     <div id="app">
-      <button @click="find(0.3)" id="r300">Tim trong 300 m (mặc định)</button>
-      <button @click="find(0.6)" id= "r600">Tim trong 600 m</button>
-      <button @click="find(1.0)" id= "r1000">Tim trong 1000 m</button>
-      <button @click="findOrigin" id= "originalPoint">Địa điểm gốc</button>
-      <button @click="findPath" >Tìm đường đi ngắn nhất</button>
-      <button @click="complete" >Gửi điểm cho app 3</button>
+      <button class="btn btn-default" @click="find(0.3)" id="r300">Tim trong 300 m (mặc định)</button>
+      <button class="btn btn-default" @click="find(0.6)" id= "r600">Tim trong 600 m</button>
+      <button class="btn btn-default" @click="find(1.0)" id= "r1000">Tim trong 1000 m</button>
+      <button class="btn btn-default" @click="findOrigin" id= "originalPoint">Địa điểm gốc</button>
+      <button class="btn btn-default" @click="findPath" >Tìm đường đi ngắn nhất</button>
+      <button class="btn btn-default" @click="complete" >Gửi điểm cho app 3</button>
       <h1>Phien định vị được kết thúc bằng nút Gủi đến App3.</h1>
       <h2>Để có thể nhận các điểm khác từ app 1 nếu muôn thì hãy nhân "Gửi đến App 3"</h2>
     </div>
     <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js"></script>
 
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-auth.js"></script>
+   
     <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase-database.js"></script>
     <script src="api.js"></script>
     <script src="app.js"></script>
@@ -52,7 +54,7 @@
        };
 
       firebase.initializeApp(config);
-
+      var auth = firebase.auth();
       var database = firebase.database();
 
       //geometric map
@@ -92,7 +94,7 @@
     {
         apiAttributes.defaultInit();
         //tim client co san de
-        appAttributes.findclient().then(function(res){
+        /*appAttributes.findclient().then(function(res){
 
            if(res){
               //bat client de giao tiep
@@ -122,12 +124,12 @@
          
         }).catch(function(error){
            console.log(error);
-        });
+        });*/
       
-       // initCircle(apiAttributes.api_map);
+        initCircle(apiAttributes.api_map);
 
        
-        apiAttributes.listenEventAdjustLocation();
+       // apiAttributes.listenEventAdjustLocation();
 
     }
 
@@ -220,7 +222,53 @@
 
 
 
-       //them du
+      function InitAccount(){
+       
+        taxiIds = [];
+        var taxisRef = database.ref("Taxis")
+                       .once('value', function(snapshot) {
+                            snapshot.forEach(function(childSnapshot) {
+                               var key = childSnapshot.key;
+                               taxiIds.push(key);
+                              
+
+                            });
+                        });
+        
+        taxisRef.then(function(data){
+           // console.log(taxiIds.length);  
+
+              for(var i = 0; i < taxiIds.length; i++)
+              {
+
+                var username = "driver" + i + "@gmail.com";
+                var password = "12345678";
+                auth.createUserWithEmailAndPassword(username, password)
+                    .then(function(rs){ 
+                      var order = parseInt(rs.email.split("driver")[1].split("@")[0]); // index
+                      firebase.database().ref('Taxis/' + taxiIds[order]).update({
+                      uid: rs.uid
+                      });
+                   
+                      console.log(order);
+
+                    })
+                    .catch(function(error) {
+                          // Handle Errors here.
+                       var errorCode = error.code;
+                       var errorMessage = error.message;
+                       console.log(errorCode + " " + errorMessage);
+                          // ...
+                    });
+
+              }
+        });
+
+      
+
+       
+       
+      }
       function addToFirebase(i,data){
           writeTaxisData(i,data);
       }
@@ -229,8 +277,15 @@
           driverName: data.driverName,
           lat: data.lat,
           lng : data.lng,
-          status : data.status
+          status : data.status,
+          pointKey: data.pointKey,
+          uid: data.uid,
+          onoff : data.onoff,
+          cusPhonenumber: data.cusPhonenumber,
+          type : data.type
+
         });
+        
       }
       function initCircle(map){
 
@@ -262,17 +317,16 @@
               lat: null,
               lng: null,
               status: 0, //status = 0 : dang ranh, status == 1 da nhan va dang tren duong don khach
-              username: null,
-              password: null,
               pointKey: 0,
+              uid: 0, //id de dinh danh khi dang nhap
+              onoff: 0, //chua dang nhap
               cusPhonenumber: 0,
               type: 0
             };
             data.lat = ptLat;
             data.lng = ptLng;
             data.driverName = "Driver " + i;
-            username = "driver" + i;
-            password = "driver" + i;
+         
             //console.log(data);
             addToFirebase(i,data);
             // break;
@@ -282,10 +336,14 @@
             console.log("not contain");
           }
         }
+
+
+        InitAccount();  
+
       }
 
 
-    
+      
 
   
       window.onbeforeunload = function () {
@@ -351,7 +409,7 @@
    <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe2djMmwmVr0AXPbmSQLksDRWFpzRVQ8g&libraries=places&callback=initMap"
         async defer></script> -->
     
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8aZnYa2rBuQaA_asqmH65T5FbqMq2Pyc&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8aZnYa2rBuQaA_asqmH65T5FbqMq2Pyc&libraries=geometry&callback=initMap"
         async defer></script>    
   </body>
 </html>
