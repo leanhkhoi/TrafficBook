@@ -94,7 +94,7 @@
     {
         apiAttributes.defaultInit();
         //tim client co san de
-        /*appAttributes.findclient().then(function(res){
+        appAttributes.findclient().then(function(res){
 
            if(res){
               //bat client de giao tiep
@@ -107,6 +107,14 @@
               {
                   if(myClientInfo.available == 0){
                     alert("Bạn hãy làm công việc còn dang dỡ");
+                    /*var taxisRef = database.ref("Taxis")
+                    .once('value', function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                         var childData = childSnapshot.val();
+                         var point = new google.maps.LatLng(childData.lat, childData.lng);
+                         apiAttributes.createMarker(apiAttributes.api_map, point, null, icon);
+                      });
+                    });*/
                     appAttributes.ExecuteLocationFromPhoneApp(myClientInfo.location);
 
                   }
@@ -124,12 +132,14 @@
          
         }).catch(function(error){
            console.log(error);
-        });*/
-      
-        initCircle(apiAttributes.api_map);
+        });
+       
+        
+
+        //initCircle(apiAttributes.api_map);
 
        
-       // apiAttributes.listenEventAdjustLocation();
+        apiAttributes.listenEventAdjustLocation();
 
     }
 
@@ -157,7 +167,7 @@
            setTimeout(function(){
               if(appAttributes.app_countTaxis==0)
                 alert("Không tìm thấy taxi");
-            }, 1000)
+            }, 2000);
           },
           findOrigin: function() {
             if(appAttributes.app_currentStringAddress == 0) return;
@@ -194,7 +204,7 @@
               
             //bam vao hoan thanh de gui len app 3
             //gui ve app 1 là đã định vị
-              appAttributes.SendPointStatusBackPhoneApp();
+             // appAttributes.SendPointStatusBackPhoneApp();
               appAttributes.SendPointToManagerApp(); //=> tra ve point ref
 
               //gui diem cho taxi bao gom ca key cua poin
@@ -349,6 +359,7 @@
       window.onbeforeunload = function () {
             //console.log("abasd");
             //khi leave khoi page thi tat quan ly
+
              appAttributes.TurnOffClient();
              return "Asdasds";
       };
@@ -409,7 +420,7 @@
    <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe2djMmwmVr0AXPbmSQLksDRWFpzRVQ8g&libraries=places&callback=initMap"
         async defer></script> -->
     
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8aZnYa2rBuQaA_asqmH65T5FbqMq2Pyc&libraries=geometry&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8aZnYa2rBuQaA_asqmH65T5FbqMq2Pyc&libraries=places&callback=initMap"
         async defer></script>    
   </body>
 </html>

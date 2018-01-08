@@ -130,7 +130,10 @@
 				    		}else if(points[i].status == 2){
 				    			html = html + '<p>Tài xế: ' + points[i].driverName +'</p>' + '<p>Tinh trạng: Tài xế đang đón</p>'
 				    			 + '<p>Địa điểm taxi:' + points[i].taxiPos + '</p>' ;
-				    		}
+				    		}else if(points[i].status == 3){
+                                html = html + '<p>Tài xế: ' + points[i].driverName +'</p>' + '<p>Tinh trạng: Da Hoan Thanh</p>'
+                                 + '<p>Địa điểm taxi:' + points[i].taxiPos + '</p>' ;
+                            }
 				    						
 				    		html = html + '</div></li>';
     					}

@@ -97,8 +97,13 @@
 
         ReadTaxisLocation(customerLocation,map){
 
-          if(customerLocation===0) return;
+          if(customerLocation===0)
+          {
+            
+             return;
+          }
           else{
+            
            var taxisRef = database.ref("Taxis")
            .once('value', function(snapshot) {
              snapshot.forEach(function(childSnapshot) {
@@ -137,9 +142,10 @@
 
                    var dis = parseFloat(response.rows[0].elements[0].distance.text.split(" ")[0]);
                    
-                   if(dis < appAttributes.app_maxDistance && appAttributes.app_countTaxis < 10 && _status == 0){
+                   if((dis < appAttributes.app_maxDistance) && (appAttributes.app_countTaxis < 10) && (_status == 0)){
                          //chon ra xe co khoang cach ngan nhat
                          if(dis < appAttributes.app_minDistance){
+                            console.log(dis);
                            appAttributes.app_minDistance = dis;
                            taxiInfo.key = _key;
                            taxiInfo.status= _status;
@@ -180,6 +186,7 @@
             locatersRef.on('child_changed', function(data) {
             //setCommentValues(postElement, data.key, data.val().text, data.val().author);
                // clearOverlays();
+
                 if(data.key == "location") {
                   apiAttributes.clearOverlays();
                   appAttributes.setDefaultSearchTaxiConfig();
@@ -205,7 +212,7 @@
             locatersRef.on('child_added', function(data) {
             //setCommentValues(postElement, data.key, data.val().text, data.val().author);
                // clearOverlays();
-                
+                  
               if(data.key == "location") {
                 apiAttributes.clearOverlays();
                 appAttributes.setDefaultSearchTaxiConfig();
@@ -329,16 +336,16 @@
 
 
          updateTaxiToPickCustomer(){
-          if(taxiInfo.key!= null & taxiInfo.pointKey!= null){
+          if((taxiInfo.key!= null) && (taxiInfo.pointKey != null)){
 
-
+           // alert(taxiInfo.key);
             firebase.database().ref('Taxis/' + taxiInfo.key).update({
             
-              status: 1,
-              cusPhone: myClientInfo.phonenumber,
-              cusType: myClientInfo.type,
-              pointKey: taxiInfo.pointKey
-              
+              status: 2, //thiet lap dang ban phan hoi voi he thong
+              cusPhonenumber: myClientInfo.phonenumber,
+              type: myClientInfo.type,
+              pointKey: taxiInfo.pointKey.toString().split("https://trafficbookapp.firebaseio.com/Points/")[1]
+            
             });
           }
          }

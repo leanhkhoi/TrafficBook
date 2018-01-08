@@ -54,6 +54,7 @@
          }
 
          clearOverlays() {
+          
            for (var i = 0; i < this.api_markers.length; i++ ) {
              this.api_markers[i].setMap(null);
            }

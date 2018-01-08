@@ -1,12 +1,13 @@
 function InitVue(main){
 
-	main = new Vue({
+	var main = new Vue({
 		el: '#main',
 		data: {
 		  	isCollapse : false,
 		  	login :false,
 		    message: 'Hello Vue World',
 		    style: "color:black; display: none;background: #FAFAFA;border: 0px solid black;border-radius: 20px;",
+		    isTaxiResponseWaitting: false,
 		    count: 0
 		},
 		created: function(){
@@ -168,10 +169,9 @@ function InitVue(main){
 				})
 			    .then(function(data){
 			    	if(main.login == true){
-			    		
 			    		main.setMapPageStyle(); // chuyen man hinh sang trang main
-			    		
-			    		createNewMap(map);
+			    		map = createNewMap();
+			    		initEventOnTaxi();
 			    	}else{
 			    		alert("Login that bai");
 			    		
@@ -187,6 +187,125 @@ function InitVue(main){
 		  		$("#map").css("display","none");
 		  		$("#waithScreen").html("<h2 style='color:green;'>WAIT TO AUTHENTICATE</h2>")
 		  	},
+
+		  	showNotify: function(){
+
+		  		$("#notifyPannel").css("display","block");
+		  		if(!this.isTaxiResponseWaitting){
+		  			this.isTaxiResponseWaitting = true;
+		  			setTimeout(function(){
+		  				if(main.isTaxiResponseWaitting == true){ // sau 5 s ko co phan hoi
+		  					main.closeNotify();
+		  					main.findAnotherTaxi();
+		  				}
+		  			}, 10000);
+		  		}
+		  	},
+		  	closeNotify: function(){
+		  		$("#notifyPannel").css("display","none");
+		  	},
+		  	findPath: function(){
+		  		//input 
+		  		//taxilocation
+		  		var taxiLocation = null;
+		  		var clientLocation = null;
+		  		database.ref("Points/"+signinTaxi.pointKey + "/cusPos")
+		  		.once('value', function(snapshot_0) {
+		  			if(snapshot_0.val() != null)
+		  				clientLocation = snapshot_0.val();
+		  			else {
+		  				console.log("snapshot is null");
+		  			}
+   				}).then(function(){
+					database.ref("Points/"+signinTaxi.pointKey + "/taxiPos").once('value', function(snapshot_1){
+						if(snapshot_1.val() != null)
+						taxiLocation = snapshot_1.val();
+						else console.log("snapshot1 is null");
+					}).then(function(){
+						if(taxiLocation!= null && clientLocation!= null)
+						showPathOnMap(taxiLocation, clientLocation);
+						else console.log("clientLocation vs taxiLocation are null");
+					});
+   				});
+
+		  	},
+		  	
+		  	findAnotherTaxi: function(){
+		  		//random taxi
+		  		//tim tat ca cac taxi, cai nao gan nhat thi lay
+		  		var taxisRef = database.ref("Taxis")
+		  		.once('value', function(snapshot) {
+		  		  var length = (Object.keys(snapshot.toJSON()).length);
+		  		  snapshot.forEach(function(childSnapshot) {
+		  		    var childKey = childSnapshot.key;
+		  		   	var childData = childSnapshot.val();
+		  		   	//var consideredTaxiPoint = new google.maps.LatLng(childData.lat, childData.lng);
+		  		   	//var currentTaxiPoint = new google.maps.LatLng(signinTaxi.lat, signinTaxi.lng);
+		  		   	//tim ra taxi gan voi taxi nay nhat
+		  		   	considerTaxiToPickNext(map,childData, childKey,length);
+		  		   
+		  		  });
+		  		});
+		  		
+		  	},
+		  	updateForNewTaxi: function(){
+		  		if(selectedTaxi != null){ //tim duo taxi phu hop
+		  			/*firebase.database().ref('Taxis/' + selectedTaxi + "/driverName").once('value', function(snapshot) {
+		  					console.log(selectedTaxi + " distance = " + maxDistance + " taxi: " + snapshot.val());
+		  					//alert(snapshot.val());
+		  			});*/
+		  			firebase.database().ref('Points/' + signinTaxi.pointKey).update({
+		  				cusPos: selectedStringAddress
+		  				
+		  			}).then(function(){
+		  				firebase.database().ref('Taxis/' + selectedTaxi).update({
+		  				
+		  				  status: 2, //thiet lap dang ban phan hoi voi he thong
+		  				  cusPhonenumber: signinTaxi.cusPhonenumber,
+		  				  type: signinTaxi.type,
+		  				  pointKey: signinTaxi.pointKey
+		  				
+		  				}).then(function(data){
+		  					
+		  					resetUnstableAppAttribute();
+		  					main.setReady();
+		  					alert("Da chuyen sang taxi khac");
+		  				});
+		  			});
+
+		  		}
+		  		else{
+		  			alert("selectedTaxi is null");
+		  		}
+
+		  	},
+		  	setReady: function(){
+		  		//set status = 0
+		  		database.ref('Taxis/' + signinTaxi.key).update({ //update da login tren taxis
+                  cusPhonenumber: 0,
+                  pointKey: 0,
+                  status: 0,
+                  type: 0
+                });
+                refeshMap();
+		  	},
+		  	startPickCustomer: function(){
+		  		//set status = 1
+		  		database.ref('Taxis/' + signinTaxi.key).update({
+		  			 status: 1
+		  		});
+		  	},
+		  	endPickCustomer: function(){
+		  		//set staus = 0
+		  		firebase.database().ref('Points/' + signinTaxi.pointKey).update({
+		  				status: 3
+		  				
+	  			}).then(function(){
+	  				this.setReady();
+				});	
+		  		
+
+		  	},
 		    countUp: function() {
 		      this.count += 1
 		    },
@@ -198,6 +317,6 @@ function InitVue(main){
 
 	})
 
-
+	return main;
 }
 

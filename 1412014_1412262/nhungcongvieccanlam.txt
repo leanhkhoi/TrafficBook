@@ -31,3 +31,7 @@ App 4:
 	 - pointKey : key cua point , co value khi App2 gui diem cho App 3 (voi dieu kien co taxi phu hop)
 	 - phonenumber: so dien thoai khach hang , co value khi App2 gui diem cho App 3 (voi dieu kien co taxi phu hop)
 	 - username + password + onoff
+
+	 taixe : status == 1 dang phan hoi voi he thong
+	 		 status == 2 dang di don khach
+	 		 status == 0 dang san sang

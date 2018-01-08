@@ -1,6 +1,6 @@
 
-function createNewMap(map){
-		map = new google.maps.Map(document.getElementById('map'), {
+function createNewMap(){
+		var map = new google.maps.Map(document.getElementById('map'), {
 		  zoom: 14,
 		  center: {lat: 10.801375268539708, lng: 106.71134233474731},
 		  mapTypeControl: false,
@@ -11,55 +11,144 @@ function createNewMap(map){
           }
 		});
 		createControlUI(map);
+		createService(map);
+		return map;
 }
 function createControlUI(map){
-	createBottomLeftBtn(map);
-	createBottomRightBtn(map);
-	createBottomCenterBtn(map);
+	createStartPickingBtn(map);
+	createEndPickingBtn(map);
+	createRefreshMapBtn(map);
+	createNotifyBtns(map);
 }
-function createBottomRightBtn(map){
+function createStartPickingBtn(map){
 	var chicago = {lat: 41.85, lng: -87.65};
 
 	var control = document.createElement('div');
 	var btn =  document.createElement('button');
 	btn.className = "btn btn-xs btn-primary";
-	btn.innerHTML = "Bottom Right";
+	btn.innerHTML = "Bat Dau";
 	
 	control.appendChild(btn);
 	btn.addEventListener('click', function() {
-         map.setCenter(chicago);
+		//bat dau don khach
+		main.startPickCustomer();
+         
        });
 	//control.style.border = '2px solid #fff';
 	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
 }
-function createBottomLeftBtn(map){
+function createEndPickingBtn(map){
 	var chicago = {lat: 41.85, lng: -87.65};
 
 	var control = document.createElement('div');
 	var btn =  document.createElement('button');
 	btn.className = "btn btn-xs btn-primary";
-	btn.innerHTML = "Bottom Left";
+	btn.innerHTML = "Ket Thuc";
 	
 	control.appendChild(btn);
 	btn.addEventListener('click', function() {
-         map.setCenter(chicago);
-       });
+		//ket thuc don khach
+        main.endPickCustomer();
+      });
 	//control.style.border = '2px solid #fff';
 	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
 }
-function createBottomCenterBtn(map){
+function createRefreshMapBtn(map){
 	var chicago = {lat: 41.85, lng: -87.65};
 
 	var control = document.createElement('div');
 	var btn =  document.createElement('button');
 	btn.className = "btn btn-xs btn-primary";
-	btn.innerHTML = "Bottom Center";
+	btn.innerHTML = "Refesh";
 	control.appendChild(btn);
 	btn.addEventListener('click', function() {
-         map.setCenter(chicago);
-       });
+        refeshMap();
+    });
 	//control.style.border = '2px solid #fff';
 	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
+}
+
+function createNotifyBtns(map){
+	var chicago = {lat: 41.85, lng: -87.65};
+
+	var control = document.createElement('div');
+	control.id = "notifyPannel";
+	control.style.marginTop = "130px";
+	control.style.display = "none";
+	
+	var buttonAccept = document.createElement("button");
+	buttonAccept.id = "acceptPick";
+	buttonAccept.className = "btn btn-xs btn-default";
+	buttonAccept.style.margin = "5px";
+	buttonAccept.innerHTML = "Xac Nhan";
+
+	var buttonDecline = document.createElement("button");
+	buttonDecline.id = "declinePick";
+	buttonDecline.className = "btn btn-xs btn-default";
+	buttonDecline.style.margin = "5px";
+	buttonDecline.innerHTML = "Tu Choi";
+
+	var buttonDiv = document.createElement("div");
+	buttonDiv.className = "col-sm-12 text-center";
+	buttonDiv.appendChild(buttonAccept);
+	buttonDiv.appendChild(buttonDecline);
+
+	var stateDiv = document.createElement("div");
+	stateDiv.className = "col-sm-12 text-center";
+	stateDiv.innerHTML = '<span style="color: green">Có khách yêu cầu</span>';
+
+	var pannelBodyDiv = document.createElement("div");
+	pannelBodyDiv.className = "panel-body";
+	pannelBodyDiv.appendChild(stateDiv);
+	pannelBodyDiv.appendChild(buttonDiv);
+
+	var pannelDiv = document.createElement("div");
+	pannelDiv.className = "panel panel-default";
+	pannelDiv.style.background = 'white';
+	pannelDiv.appendChild(pannelBodyDiv);
+
+	control.appendChild(pannelDiv);
+
+	buttonAccept.addEventListener('click', function() {
+		
+		//khi chap nhan thi show duong di
+		main.closeNotify();
+		main.isTaxiResponseWaitting = false; //da xac nhan
+		main.findPath();
+        // alert("accept");
+     });
+	buttonDecline.addEventListener('click', function() {
+		//tim xe khac + set trang thai taxi thanh 0 (dang san sang)
+		
+		main.closeNotify();
+		main.isTaxiResponseWaitting = false; //da xac nhan
+		main.findAnotherTaxi();
+		main.setReady();
+        alert("decline");
+    });
+	
+	map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+	
+
+	/*<div id="notifyRow" style="display: none;">
+			<div class="panel panel-default" style="background: black;">
+		   		<div class="panel-body">
+		   		 	<div class="col-sm-12 text-center"><span style="color: green">Có khách yêu cầu</span></div>
+		   		 	<div class="col-sm-12 text-center">
+		   		 		<button class="btn btn-xs btn-default">Xac nhận</button>			   		 		
+		   		 		<button class="btn btn-xs btn-default">Tu Choi</button>
+		   		 	</div>
+		   		</div>
+		 	</div>
+	</div>*/
+	
+}
+
+function createService(map){
+	directionsService = new google.maps.DirectionsService;
+	directionsDisplay = new google.maps.DirectionsRenderer;
+	directionsDisplay.setMap(map);
+	geocoder = new google.maps.Geocoder();
 }
 function initMap(){
 
