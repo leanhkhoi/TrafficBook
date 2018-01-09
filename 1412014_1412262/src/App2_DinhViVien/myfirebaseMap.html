@@ -4,6 +4,9 @@
     <title>Geocoding service</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -24,9 +27,10 @@
    
     <div id="map"></div>
     <div id="app">
-      <button class="btn btn-default" @click="find(0.3)" id="r300">Tim trong 300 m (mặc định)</button>
+      <button class="btn btn-default" @click="beforeFind()" id="findId">Tìm</button>
+      <!-- <button class="btn btn-default" @click="find(0.3)" id="r300">Tim trong 300 m (mặc định)</button>
       <button class="btn btn-default" @click="find(0.6)" id= "r600">Tim trong 600 m</button>
-      <button class="btn btn-default" @click="find(1.0)" id= "r1000">Tim trong 1000 m</button>
+      <button class="btn btn-default" @click="find(1.0)" id= "r1000">Tim trong 1000 m</button> -->
       <button class="btn btn-default" @click="findOrigin" id= "originalPoint">Địa điểm gốc</button>
       <button class="btn btn-default" @click="findPath" >Tìm đường đi ngắn nhất</button>
       <button class="btn btn-default" @click="complete" >Gửi điểm cho app 3</button>
@@ -148,37 +152,95 @@
       var app = new Vue({
         el: '#app',
         data: {
-
-          message: 'Hello Vue World',
+          isVirtualMode: false,
+          isWaittingToFind: false,
+          
+          countFindTurnMax: 3,
+          countTimer: 0,
+          message: 'Hello Vue World'
         
         },
         methods: {
-         
-          find: function(distance){
+          beforeFind: function(){
+            if(this.isWaittingToFind == false){
+              this.showWaitTime();   
+              this.find(1);
+            }else{
+
+            }
+            
+          },
+          showWaitTime: function(){
+            setTimeout(function(){
+              app.countTimer = app.countTimer + 1000;
+              if(app.countTimer < app.countFindTurnMax*10000){
+                $("#findId").html("Đang chờ (" + (app.countTimer/1000) + ")" );
+                app.showWaitTime();
+
+              }else{
+                $("#findId").html("Tìm" );
+                app.countTimer = 0;
+              }
+            },1000);
+          },
+          find: function(count){
+            this.isWaittingToFind = true;
             if(appAttributes.app_currentStringAddress == 0) return;
+            if(count > this.countFindTurnMax) { //tim ca 3 lan van ko thay
+              this.isWaittingToFind = false; //khong tim nua
+              alert("Không tìm thấy taxi. Hãy bấm gửi button Gửi App 3 đề hoàn tất phiên");
+              return;
+            }
             apiAttributes.clearOverlays()
             appAttributes.setDefaultSearchTaxiConfig()
 
-            appAttributes.app_maxDistance = distance
+            appAttributes.app_maxDistance = 1.0;
          
             apiAttributes.createMarker(apiAttributes.api_map, appAttributes.app_currentCustomerPoint, null, null)
             appAttributes.ReadTaxisLocation(appAttributes.app_currentCustomerPoint, apiAttributes.api_map)
              
            setTimeout(function(){
               if(appAttributes.app_countTaxis==0)
-                alert("Không tìm thấy taxi");
-            }, 2000);
+              {
+                console.log("Không tìm thấy taxi");
+                app.find(count+1);
+                
+              }else{
+                app.isWaittingToFind = false;
+                app.countTimer = app.countFindTurnMax*10000;
+              }
+            }, 10000);
           },
           findOrigin: function() {
-            if(appAttributes.app_currentStringAddress == 0) return;
-            apiAttributes.clearOverlays()
-            appAttributes.setDefaultSearchTaxiConfig()
-            appAttributes.app_currentCustomerPoint= appAttributes.app_originCustomerPoint
-            apiAttributes.createMarker(apiAttributes.api_map, appAttributes.app_currentCustomerPoint, null, null)
+            if(this.isWaittingToFind == true){ //neu dang tim xe
+              alert("Không thể khôi phục. Hệ thống đang làm 1 tác vụ khác, chờ cho nó hoàn thành");
+            }
+            if(this.isVirtualMode == true){
+
+              if(appAttributes.app_currentStringAddress == 0) return;
+             
+              this.isVirtualMode = false; //thoai khoi che do gia lap
+              apiAttributes.clearOverlays();
+              appAttributes.setDefaultSearchTaxiConfig();
+              appAttributes.app_currentCustomerPoint= appAttributes.app_originCustomerPoint;
+              appAttributes.app_currentStringAddress = appAttributes.app_originStringAddess;
+              apiAttributes.createMarker(apiAttributes.api_map, appAttributes.app_currentCustomerPoint, null, null);
+              this.beforeFind();
+             
+            }
+           
            
           },
           findPath: function(){
-            if(taxiInfo.selectedDriverStringAddress == 0) return;
+            if(this.isWaittingToFind == true){
+              alert("Đang tìm taxi!");
+              return;
+            } 
+            if(taxiInfo.selectedDriverStringAddress == 0)
+            {
+              alert("Bạn chưa tìm xe hoặc không có xe xung quanh");
+              return;
+            } 
             apiAttributes.api_directionsDisplay.setMap(apiAttributes.api_map);
             apiAttributes.api_directionsService.route({
                       origin: taxiInfo.selectedDriverStringAddress,
@@ -198,6 +260,16 @@
 
           },
           complete: function(){
+            if(this.isWaittingToFind == true) //neu dang tim diem thi khoogn thểguiwr
+            {
+              alert("Không thể gửi! Đang tìm taxi");
+              return;
+            }
+            if(this.isVirtualMode==true) {
+              alert("Không thể gửi!\nHãy click vào button địa điểm gốc để thiết lập hành trình ban đầu rồi gửi");
+              return;
+            }
+           
             if(myClientInfo.available == 0){
               alert("Đã gửi tín hiệu cho app 3. Vui lòng chờ sự kiện từ app 1");
 
@@ -213,6 +285,7 @@
               appAttributes.updateTaxiToPickCustomer(); //set status =1 cho taxi the hien trang thai xe dang di don khach
 
               appAttributes.updateAvailable(1);
+              myClientInfo.available = 1;
 
             }else{
               apiAttributes.clearOverlays();

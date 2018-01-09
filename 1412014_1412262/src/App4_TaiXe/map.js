@@ -10,6 +10,9 @@ function createNewMap(){
             position: google.maps.ControlPosition.LEFT_TOP
           }
 		});
+		map.setCenter(new google.maps.LatLng(signinTaxi.lat, signinTaxi.lng));
+		deleteAllMarker();
+	    createMarker(map,new google.maps.LatLng(signinTaxi.lat, signinTaxi.lng), null, icon);
 		createControlUI(map);
 		createService(map);
 		return map;
@@ -17,6 +20,7 @@ function createNewMap(){
 function createControlUI(map){
 	createStartPickingBtn(map);
 	createEndPickingBtn(map);
+	createGoingBtn(map);
 	createRefreshMapBtn(map);
 	createNotifyBtns(map);
 }
@@ -25,33 +29,62 @@ function createStartPickingBtn(map){
 
 	var control = document.createElement('div');
 	var btn =  document.createElement('button');
+	control.id = "startPickBtn";
+	control.style.display = 'none';
 	btn.className = "btn btn-xs btn-primary";
 	btn.innerHTML = "Bat Dau";
 	
 	control.appendChild(btn);
 	btn.addEventListener('click', function() {
 		//bat dau don khach
+		main.showOnGoingBtn();
 		main.startPickCustomer();
          
        });
 	//control.style.border = '2px solid #fff';
 	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
+	
+}
+function createGoingBtn(map){
+	var chicago = {lat: 41.85, lng: -87.65};
+
+	var control = document.createElement('div');
+	var btn =  document.createElement('button');
+	control.id = "onGoingBtn";
+	control.style.display = 'none';
+	btn.className = "btn btn-xs btn-primary";
+	btn.innerHTML = "Đã đón";
+	
+	control.appendChild(btn);
+	btn.addEventListener('click', function() {
+		//bat dau don khach
+		main.showEndPickBtn();
+		main.goingOn();
+         
+       });
+	//control.style.border = '2px solid #fff';
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
+	
 }
 function createEndPickingBtn(map){
 	var chicago = {lat: 41.85, lng: -87.65};
 
 	var control = document.createElement('div');
 	var btn =  document.createElement('button');
+	
 	btn.className = "btn btn-xs btn-primary";
 	btn.innerHTML = "Ket Thuc";
-	
+	control.id = "endPickBtn";
+	control.style.display = "none";
 	control.appendChild(btn);
 	btn.addEventListener('click', function() {
 		//ket thuc don khach
         main.endPickCustomer();
+        main.closeControlBtn();
       });
 	//control.style.border = '2px solid #fff';
 	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
+
 }
 function createRefreshMapBtn(map){
 	var chicago = {lat: 41.85, lng: -87.65};
@@ -65,7 +98,7 @@ function createRefreshMapBtn(map){
         refeshMap();
     });
 	//control.style.border = '2px solid #fff';
-	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(control);
+	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(control);
 }
 
 function createNotifyBtns(map){
@@ -74,7 +107,7 @@ function createNotifyBtns(map){
 	var control = document.createElement('div');
 	control.id = "notifyPannel";
 	control.style.marginTop = "130px";
-	control.style.display = "none";
+	//control.style.display = "none";
 	
 	var buttonAccept = document.createElement("button");
 	buttonAccept.id = "acceptPick";
@@ -113,6 +146,7 @@ function createNotifyBtns(map){
 		
 		//khi chap nhan thi show duong di
 		main.closeNotify();
+		main.showStartBtn();
 		main.isTaxiResponseWaitting = false; //da xac nhan
 		main.findPath();
         // alert("accept");
@@ -123,12 +157,12 @@ function createNotifyBtns(map){
 		main.closeNotify();
 		main.isTaxiResponseWaitting = false; //da xac nhan
 		main.findAnotherTaxi();
-		main.setReady();
-        alert("decline");
+		
+       // alert("decline");
     });
 	
 	map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-	
+	control.style.display = "none";
 
 	/*<div id="notifyRow" style="display: none;">
 			<div class="panel panel-default" style="background: black;">

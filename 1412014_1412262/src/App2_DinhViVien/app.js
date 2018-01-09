@@ -2,7 +2,7 @@
 
        constructor(){
               this.app_countTaxis= 0;
-              this.app_maxDistance= 0.3;
+              this.app_maxDistance= 1.0;
               this.app_minDistance= 1.0;
               this.app_originCustomerPoint= 0,
               this.app_currentCustomerPoint= 0,
@@ -22,7 +22,7 @@
             selectedDriverStringAddress: 0
           }
          // appAttributes.app_currentStringAddress = 0;
-          this.app_maxDistance = 0.3;
+          this.app_maxDistance = 1.0;
           this.app_minDistance = 1.0;
         }
 
@@ -34,13 +34,13 @@
                    //success tra ve dua chi cua khach
                   // ReadTaxisLocation(success,map,300);
                   //cap nhap lai tren firebase
-                  this.app_currentCustomerPoint = data;
+                  appAttributes.app_currentCustomerPoint = data;
                   apiAttributes.createMarker(apiAttributes.api_map, data, null, null);
                   //doc vi tri cac xe xung quanh
                  // ReadTaxisLocation(data,map);
 
                   //cap nhat vi tri thay doi tren app 2
-                  this.UpdateCustomerAddress(success);
+                  appAttributes.UpdateCustomerAddress(success);
                 }
                
               }).catch(function(error){
@@ -59,9 +59,9 @@
           apiAttributes.geocodeAddress(apiAttributes.api_geocoder, apiAttributes.api_map, address,null).then((success)=>{
             
             if(success){
-              this.app_currentCustomerPoint = success;
-              this.app_originCustomerPoint = success;
-              this.app_founded = true; 
+              appAttributes.app_currentCustomerPoint = success;
+              appAttributes.app_originCustomerPoint = success;
+              appAttributes.app_founded = true; 
               //alert(sucess);
               //hien vi tri khach tren ban do
               apiAttributes.createMarker(apiAttributes.api_map, success, null, null);
@@ -78,8 +78,8 @@
           }).catch((error)=>{
             //tim khong duoc vi tri
             
-            this.app_currentStringAddress = 0;
-            this.app_founded = false;
+            appAttributes.app_currentStringAddress = 0;
+            appAttributes.app_founded = false;
             alert("Không thể tìm thấy điểm. Bấm vào 'Gửi cho app 3' để hoàn tất phiên làm việc này" + error );
             //alert("Khong tim duoc vi tri tren ban do")
             
@@ -145,7 +145,7 @@
                    if((dis < appAttributes.app_maxDistance) && (appAttributes.app_countTaxis < 10) && (_status == 0)){
                          //chon ra xe co khoang cach ngan nhat
                          if(dis < appAttributes.app_minDistance){
-                            console.log(dis);
+                          //console.log(dis);
                            appAttributes.app_minDistance = dis;
                            taxiInfo.key = _key;
                            taxiInfo.status= _status;
@@ -157,7 +157,7 @@
 
                          appAttributes.app_countTaxis++;
 
-                         //console.log(dis + " " + response.originAddresses[0] + "to" + response.destinationAddresses[0]);
+                         console.log(dis + " " + response.originAddresses[0] + "to" + response.destinationAddresses[0]);
                          apiAttributes.geocodeAddress(apiAttributes.api_geocoder, map,response.originAddresses[0],null).then(function(success, fail){
                            if(success){
 
@@ -173,7 +173,7 @@
 
                  }
                  else{
-                  console.log("fail service distance");
+                  console.log("fail service distance" + status);
                  }
 
               });
@@ -321,7 +321,7 @@
                 
                 //gan key cuar Point cho taxi 
                 taxiInfo.pointKey = pointRef;
-                
+                console.log(taxiInfo.driverName);
               }
             }else{
               var pointRef = firebase.database().ref('Points').push({
@@ -341,7 +341,7 @@
            // alert(taxiInfo.key);
             firebase.database().ref('Taxis/' + taxiInfo.key).update({
             
-              status: 2, //thiet lap dang ban phan hoi voi he thong
+              status: 3, //thiet lap dang ban phan hoi voi he thong
               cusPhonenumber: myClientInfo.phonenumber,
               type: myClientInfo.type,
               pointKey: taxiInfo.pointKey.toString().split("https://trafficbookapp.firebaseio.com/Points/")[1]

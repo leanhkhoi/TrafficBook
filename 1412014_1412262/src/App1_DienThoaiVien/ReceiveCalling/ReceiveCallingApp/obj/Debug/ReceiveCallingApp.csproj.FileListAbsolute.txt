@@ -92,3 +92,4 @@ C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src
 C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.csproj.CoreCompileInputs.cache
 C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.exe
 C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\obj\Debug\ReceiveCallingApp.pdb
+C:\Users\Le Anh Khoi\Desktop\Subject\Môn Công Nghệ Mới\1412014_1412262\src\App1_DienThoaiVien\ReceiveCalling\ReceiveCallingApp\bin\Debug\GoogleDirections.dll

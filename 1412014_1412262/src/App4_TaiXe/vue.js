@@ -196,6 +196,7 @@ function InitVue(main){
 		  			setTimeout(function(){
 		  				if(main.isTaxiResponseWaitting == true){ // sau 5 s ko co phan hoi
 		  					main.closeNotify();
+		  					main.isTaxiResponseWaitting = false;
 		  					main.findAnotherTaxi();
 		  				}
 		  			}, 10000);
@@ -254,13 +255,15 @@ function InitVue(main){
 		  					console.log(selectedTaxi + " distance = " + maxDistance + " taxi: " + snapshot.val());
 		  					//alert(snapshot.val());
 		  			});*/
+		  			console.log("driverName: "+ signinTaxi.driverName);
 		  			firebase.database().ref('Points/' + signinTaxi.pointKey).update({
-		  				cusPos: selectedStringAddress
+		  				taxiPos: selectedStringAddress,
+		  				driverName: selectedDriverName
 		  				
 		  			}).then(function(){
 		  				firebase.database().ref('Taxis/' + selectedTaxi).update({
 		  				
-		  				  status: 2, //thiet lap dang ban phan hoi voi he thong
+		  				  status: 3, //thiet lap dang ban phan hoi voi he thong
 		  				  cusPhonenumber: signinTaxi.cusPhonenumber,
 		  				  type: signinTaxi.type,
 		  				  pointKey: signinTaxi.pointKey
@@ -284,7 +287,7 @@ function InitVue(main){
 		  		database.ref('Taxis/' + signinTaxi.key).update({ //update da login tren taxis
                   cusPhonenumber: 0,
                   pointKey: 0,
-                  status: 0,
+                  status: 0, //san sang don kahch tiep theo
                   type: 0
                 });
                 refeshMap();
@@ -292,20 +295,54 @@ function InitVue(main){
 		  	startPickCustomer: function(){
 		  		//set status = 1
 		  		database.ref('Taxis/' + signinTaxi.key).update({
-		  			 status: 1
+		  			status: 1 //dang tren duong don khach
+		  		}).then(function(){
+			  		firebase.database().ref('Points/' + signinTaxi.pointKey).update({
+			  			status: 2 //thiet lap dang tren duong toi don cho Point	
+		  			});
+		  		});
+		  	},
+		  	goingOn: function(){
+		  		database.ref('Taxis/' + signinTaxi.key).update({
+		  			 status: 2 //đã đón khách và đang đi
+		  		}).then(function(){
+		  			firebase.database().ref('Points/' + signinTaxi.pointKey).update({
+			  			status: 3 //Đã đón và đang đi
+		  			});
 		  		});
 		  	},
 		  	endPickCustomer: function(){
 		  		//set staus = 0
 		  		firebase.database().ref('Points/' + signinTaxi.pointKey).update({
-		  				status: 3
+		  				status: 4 //hoan thanh
 		  				
 	  			}).then(function(){
-	  				this.setReady();
+	  				main.setReady();
 				});	
 		  		
 
 		  	},
+		  	showOnGoingBtn: function(){
+		  		//alert("ongoing");
+				$("#startPickBtn").css("display","none");
+				$("#onGoingBtn").css("display","block");
+				$("#endPickBtn").css("display", "none");
+		  	},
+			showEndPickBtn: function(){
+				$("#startPickBtn").css("display","none");
+				$("#onGoingBtn").css("display", "none");
+				$("#endPickBtn").css("display", "block");
+			},
+			showStartBtn: function(){
+				$("#startPickBtn").css("display","block");
+				$("#onGoingBtn").css("display", "none");
+				$("#endPickBtn").css("display", "none");
+			},
+			closeControlBtn: function(){
+				$("#startPickBtn").css("display","none");
+				$("#onGoingBtn").css("display", "none");
+				$("#endPickBtn").css("display", "none");
+			},
 		    countUp: function() {
 		      this.count += 1
 		    },

@@ -7,6 +7,8 @@ using FireSharp.Config;
 using FireSharp;
 using FireSharp.Response;
 using FireSharp.Extensions;
+using Newtonsoft.Json.Linq;
+using GoogleDirections;
 
 namespace ReceiveCallingApp
 {
@@ -302,17 +304,83 @@ namespace ReceiveCallingApp
 
         }
          private bool SendToInspectorApp()
-        {
-            string path = "Points";
+         {
+            FirebaseResponse response;
+            string path1 = "Taxis";
+            string path2 = "Points";
+
+            //tim taxi de gui
+            //random 1 so tu 0 -> 99
+            //
+            Taxi selectedTaxi = null;
+            string selectedTaxiKey = null;
+            Dictionary<string, Taxi> taxis = new Dictionary<string, Taxi>();
+            response = client.Get(path1);
+            taxis = response.ResultAs<Dictionary<string, Taxi>>();
+            if (taxis.Count == 0)
+            {
+                MessageBox.Show("load taxis failed, null");
+                return false;
+            }
+            else
+            {
+                foreach (var taxi in taxis)
+                {
+                    Taxi tx = taxi.Value;
+                    string txkey = taxi.Key;
+                    if (tx.status == 0)
+                    {
+                        selectedTaxiKey = txkey;
+                        selectedTaxi = tx;
+                        MessageBox.Show("taxis have " + taxis.Count + ". this is " + tx.driverName + " with key = " + txkey);
+                        break;
+                    }
+                }
+               // return true;
+            }
 
             //lay locaters cua locatedApp
-            FirebaseResponse response;
-          
-            Point p = new Point(locationCb.Text.Split('(')[0], 1);
-            response = client.Push(path, p);
-            Point rs = response.ResultAs<Point>();
+            string addressString = "";
+            Geocoder geocoder = new Geocoder("AIzaSyD8aZnYa2rBuQaA_asqmH65T5FbqMq2Pyc");
+            if(selectedTaxi != null)
+            {
+                addressString = geocoder.ReverseGeocode(new LatLng(selectedTaxi.lat, selectedTaxi.lng));
+            }
+            else
+            {
+                MessageBox.Show("Taxi is null");
+                return false;
+            }
+           
+            if(addressString=="")
+            {
+                MessageBox.Show("geocoder dia chi that bai");
+                return false;
+            }
+
+            Point p = new Point(locationCb.Text.Split('(')[0], addressString, selectedTaxi.driverName, 2);
+
+            //*******
+            response = client.Push(path2, p); //them Point vao database ,(khong qua app 2) 
+            //*******
+
+            object rs = response.ResultAs<object>();
             if (rs == null) return false;
-            
+            JObject o = JObject.Parse(rs.ToString());
+            string pointKey = (string)o.SelectToken("name");//lay pointKey
+
+            selectedTaxi.cusPhonenumber = phonenumberText.Text;
+            selectedTaxi.pointKey = pointKey;
+            selectedTaxi.status = 3; //dang cho phan hoi
+            if (originRBtn.Checked)
+                selectedTaxi.type = "origin";
+            else selectedTaxi.type = "premium";
+
+            string path3 = "Taxis/" + selectedTaxiKey;
+            response = client.Update(path3, selectedTaxi);
+
+            //MessageBox.Show(rs.ToString() + "\n" +key);
+            //MessageBox.Show(addressString);
             return true;
         }
 
@@ -324,8 +392,13 @@ namespace ReceiveCallingApp
                 MessageBox.Show("Go dia chi moi thi phai gui cho app 2");
                 return;
             }
+            //
             if (!ValidateInput()) return;
             if (!SendToInspectorApp()) return;
+            verifyCb = false;
+            phonenumberText.Text = "";
+            locationCb.Text = "";
+
         }
 
         private void originRBtn_CheckedChanged(object sender, EventArgs e)

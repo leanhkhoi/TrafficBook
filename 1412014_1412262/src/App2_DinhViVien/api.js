@@ -33,16 +33,22 @@
          listenEventAdjustLocation(){
                //tuy chinh diem cua khach
            this.api_map.addListener('click', function(e) {
+             if(app.isWaittingToFind == true) //neu dang tim diem thi khoogn thểguiwr
+              {
+                alert("Không thể thực hiện! Hệ thống đang làm tác vụ khác");
+                return;
+              }
                  var data = {
                    lat: null,
                    lng: null
                  }
+                 app.isVirtualMode = true;
                  data.lat = e.latLng.lat();
                  data.lng = e.latLng.lng();
-                 this.api_map.setCenter(new google.maps.LatLng(data.lat, data.lng));
+                 apiAttributes.api_map.setCenter(new google.maps.LatLng(data.lat, data.lng));
 
                  //clear all previous maker 
-                 this.clearOverlays();
+                 apiAttributes.clearOverlays();
                  appAttributes.setDefaultSearchTaxiConfig();
                  //rever geocoder
 
